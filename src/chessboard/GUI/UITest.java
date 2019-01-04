@@ -11,6 +11,7 @@ package chessboard.GUI;
  * @author Ariella
  */
 
+import chessboard.Location;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import javax.swing.Icon;
 
 
 public class UITest extends JFrame{
@@ -32,6 +34,10 @@ public class UITest extends JFrame{
     private final int ROWS = 8;
     private final int COLS = 8;
     private final JButton[][] chessTiles = new JButton[ROWS][COLS];
+    private boolean tileSelected = false;
+    private ImageIcon selectedTile;
+    private ImageIcon destinationTile;
+    
     //private int rook = 0, knight = 1, bishop = 3, queen = 4, king = 5;
     
     //constructor
@@ -42,7 +48,7 @@ public class UITest extends JFrame{
     //create new chessboard GUI
     private void initUI() 
     {
-       
+        
         setLayout(new GridLayout(ROWS,COLS));
         setBackground(Color.WHITE);  
       
@@ -51,12 +57,21 @@ public class UITest extends JFrame{
         {
             for(int j = 0; j < COLS; j++)
             {
+                //set a button for each tile
                 JButton b1 = new JButton();
                 add(b1);
                 
-                ImageIcon icon =new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                //set a location for each tile
+                Location tileLocation = new Location(i,j);
+                int xLocation = tileLocation.getCol();
+                int yLocation = tileLocation.getRow();
+                
+                //add transparent img to each tile
+                ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                 b1.setIcon(icon);
                 
+                
+                //set tile color
                 if(i % 2 == 0 && j % 2 == 0)
                 {
                     b1.setBackground(Color.BLACK);
@@ -70,6 +85,27 @@ public class UITest extends JFrame{
                     b1.setBackground(Color.WHITE);
                 }
                 chessTiles[i][j] = b1; // add buttons with color to the array
+                
+                b1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        System.out.println("x:" + xLocation + " y: " + yLocation);
+                        tileSelected = !tileSelected;
+                        System.out.println(tileSelected);
+                        
+                        if(tileSelected)
+                        {
+                            ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                            b1.setIcon(icon);
+                             
+                        }
+                        if(!tileSelected)
+                        {
+                            
+                        }
+                    }
+                
+                });
             }
         }
         //pack(); sets size according to the size of its components
@@ -115,6 +151,7 @@ public class UITest extends JFrame{
 
 
         chessTiles[0][0].setIcon(blackRook);
+        //chessTiles[0][0].Type.ROOK;
         chessTiles[7][0].setIcon(whiteRook);
         
         chessTiles[0][1].setIcon(blackKnight);
@@ -138,6 +175,8 @@ public class UITest extends JFrame{
         chessTiles[0][7].setIcon(blackRook);
         chessTiles[7][7].setIcon(whiteRook);
     }
+    
+    
     
     public static void main(String[] args)
     {

@@ -13,6 +13,12 @@ import chessboard.Pieces.Piece;
  */
 public class ChessBoard {
     
+    final int ROWS = 8;
+    final int COLS = 8;
+    
+    final private Piece[][] gamePieces = new Piece[ROWS][COLS];
+    final private Location[][] locations = new Location[ROWS][COLS];
+    
     public ChessBoard()
     {
         
@@ -30,6 +36,19 @@ public class ChessBoard {
     
     public void removePiece(int row, int col)
     {
+    }
+    
+    public Location getLocation(int row, int col)
+    {
+        return locations[row][col];
+    }
+    
+    public Piece getPiece(Location location)
+    {
+        int row = location.getRow();
+        int col = location.getCol();
+        
+        return gamePieces[row][col];
     }
     
     
