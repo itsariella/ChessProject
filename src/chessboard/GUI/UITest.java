@@ -11,7 +11,6 @@ package chessboard.GUI;
  * @author Ariella
  */
 
-import chessboard.PieceImages.Rook;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,6 +24,7 @@ import javax.swing.TransferHandler;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 
 public class UITest extends JFrame{
@@ -53,6 +53,9 @@ public class UITest extends JFrame{
             {
                 JButton b1 = new JButton();
                 add(b1);
+                
+                ImageIcon icon =new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                b1.setIcon(icon);
                 
                 if(i % 2 == 0 && j % 2 == 0)
                 {
@@ -85,39 +88,55 @@ public class UITest extends JFrame{
     
     private void resetBoard() 
     {
-        Rook test;
+
+        ImageIcon blackPawn = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackPawn.png");
+        ImageIcon blackRook = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackRook.png");
+        ImageIcon blackKnight = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackKnight.png");
+        ImageIcon blackBishop = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackBishop.png");
+        ImageIcon blackQueen = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackQueen.png");
+        ImageIcon blackKing = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/blackKing.png");
+        ImageIcon whitePawn = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whitePawn.png");
+        ImageIcon whiteRook = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteRook.png");
+        ImageIcon whiteKnight = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteKnight.png");
+        ImageIcon whiteBishop = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteBishop.png");
+        ImageIcon whiteQueen = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteQueen.png");
+        ImageIcon whiteKing = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteKing.png");
+        
+        
+
         for(int i = 0; i < ROWS; i++)
         {
             for(int j = 0; j < COLS; j++)
             {
-                chessTiles[1][j].setLabel("Pawn");
-                chessTiles[6][j].setLabel("Pawn");
+                chessTiles[1][j].setIcon(blackPawn);
+                chessTiles[6][j].setIcon(whitePawn);
             }
         }
+
+
+        chessTiles[0][0].setIcon(blackRook);
+        chessTiles[7][0].setIcon(whiteRook);
         
-        chessTiles[0][0].setLabel("Rook");
-        chessTiles[7][0].setLabel("Rook");
+        chessTiles[0][1].setIcon(blackKnight);
+        chessTiles[7][1].setIcon(whiteKnight);
         
-        chessTiles[0][1].setLabel("Knight");
-        chessTiles[7][1].setLabel("Knight");
+        chessTiles[0][2].setIcon(blackBishop);
+        chessTiles[7][2].setIcon(whiteBishop);
         
-        chessTiles[0][2].setLabel("Bishop");
-        chessTiles[7][2].setLabel("Bishop");
+        chessTiles[0][3].setIcon(blackQueen);
+        chessTiles[7][3].setIcon(whiteQueen);
         
-        chessTiles[0][3].setLabel("Queen");
-        chessTiles[7][3].setLabel("Queen");
+        chessTiles[0][4].setIcon(blackKing);
+        chessTiles[7][4].setIcon(whiteKing);
         
-        chessTiles[0][4].setLabel("King");
-        chessTiles[7][4].setLabel("King");
+        chessTiles[0][5].setIcon(blackBishop);
+        chessTiles[7][5].setIcon(whiteBishop);
         
-        chessTiles[0][5].setLabel("Bishop");
-        chessTiles[7][5].setLabel("Bishop");
+        chessTiles[0][6].setIcon(blackKnight);
+        chessTiles[7][6].setIcon(whiteKnight);
         
-        chessTiles[0][6].setLabel("Knight");
-        chessTiles[7][6].setLabel("Knight");
-        
-        chessTiles[0][7].setLabel("Rook");
-        chessTiles[7][7].setLabel("Rook");
+        chessTiles[0][7].setIcon(blackRook);
+        chessTiles[7][7].setIcon(whiteRook);
     }
     
     public static void main(String[] args)

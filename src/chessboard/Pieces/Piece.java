@@ -11,12 +11,13 @@ package chessboard.Pieces;
  */
 public abstract class Piece {
     
-  public enum m_Color {WHITE, BLACK};
+  public enum Color {WHITE, BLACK};
+  public enum Type {PAWN, ROOK, KNIGHT, BISHOP,QUEEN,KING}
   
-  public Piece(m_Color color){
+  public Piece(Color color, Type type){
       
   }
   
-  public abstract String getPosition();
-    
+  public abstract void movePiece(int xCoord, int yCoord);;
+  
 }

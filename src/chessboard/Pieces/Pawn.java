@@ -9,6 +9,19 @@ package chessboard.Pieces;
  *
  * @author Ariella
  */
-public class Pawn {
+public class Pawn extends Piece {
+    
+    
+    public Pawn(Color color,Type type)
+    {
+        super(color,type);
+    }
+    
+    @Override
+   public void movePiece(int xCoord, int yCoord)
+    {
+       
+    }
+    
     
 }
