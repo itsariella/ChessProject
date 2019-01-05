@@ -12,17 +12,20 @@ package chessboard;
 public class Location {
     private int m_row;
     private int m_col;
+    private boolean tileOccupied;
     
-    public Location(int row, int col)
+    public Location(int row, int col, boolean occupied)
     {
         m_row = row;
         m_col = col;
+        tileOccupied = occupied;
     }
     
     public Location(Location source)
     {
         m_row = source.m_row;
         m_col = source.m_col;
+        tileOccupied = source.tileOccupied;
     }
     
     public int getCol()
@@ -33,5 +36,16 @@ public class Location {
     public int getRow()
     {
         return m_row;
+    }
+    
+    public boolean getStatus()
+    {
+        return tileOccupied;
+    }
+    
+    public boolean isOccupied(boolean TF)
+    {
+        tileOccupied = TF;
+        return tileOccupied;
     }
 }

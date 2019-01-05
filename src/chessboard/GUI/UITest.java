@@ -17,20 +17,21 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.TransferHandler;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import javax.swing.Icon;
-
 
 public class UITest extends JFrame{
-    
+
     private final int ROWS = 8;
     private final int COLS = 8;
     private final JButton[][] chessTiles = new JButton[ROWS][COLS];
@@ -61,14 +62,27 @@ public class UITest extends JFrame{
                 JButton b1 = new JButton();
                 add(b1);
                 
-                //set a location for each tile
-                Location tileLocation = new Location(i,j);
-                int xLocation = tileLocation.getCol();
-                int yLocation = tileLocation.getRow();
                 
                 //add transparent img to each tile
                 ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-                b1.setIcon(icon);
+                
+                JLabel label1 = new JLabel(icon, JLabel.CENTER);
+                b1.add(label1);
+                
+                MouseListener listener = new DragMouseAdapter();
+                b1.addMouseListener(listener);
+                
+                b1.setTransferHandler(new TransferHandler("icon"));
+                
+                //set a location for each tile
+                Location tileLocation = new Location(i,j,false);
+                int xLocation = tileLocation.getCol();
+                int yLocation = tileLocation.getRow();
+                
+                boolean test = tileLocation.getStatus();
+                
+                
+                System.out.println(test);
                 
                 
                 //set tile color
@@ -90,22 +104,12 @@ public class UITest extends JFrame{
                     @Override
                     public void mousePressed(MouseEvent e) {
                         System.out.println("x:" + xLocation + " y: " + yLocation);
-                        tileSelected = !tileSelected;
+                        tileSelected = false;
                         System.out.println(tileSelected);
-                        
-                        if(tileSelected)
-                        {
-                            ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-                            b1.setIcon(icon);
-                             
-                        }
-                        if(!tileSelected)
-                        {
-                            
-                        }
-                    }
-                
+                                                 
+                        } 
                 });
+                
             }
         }
         //pack(); sets size according to the size of its components
@@ -118,7 +122,12 @@ public class UITest extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close program when window is closed
         setLocationRelativeTo(null); //center GUI on the screen
 
+        
         resetBoard();
+        
+        
+        
+        
           
     }
     
@@ -137,8 +146,6 @@ public class UITest extends JFrame{
         ImageIcon whiteBishop = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteBishop.png");
         ImageIcon whiteQueen = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteQueen.png");
         ImageIcon whiteKing = new ImageIcon("C://Users/Ariella/Documents/NetBeansProjects/ChessBoard/src/chessboard/PieceImages/whiteKing.png");
-        
-        
 
         for(int i = 0; i < ROWS; i++)
         {
@@ -148,10 +155,11 @@ public class UITest extends JFrame{
                 chessTiles[6][j].setIcon(whitePawn);
             }
         }
+        
+        
 
 
         chessTiles[0][0].setIcon(blackRook);
-        //chessTiles[0][0].Type.ROOK;
         chessTiles[7][0].setIcon(whiteRook);
         
         chessTiles[0][1].setIcon(blackKnight);
@@ -174,9 +182,22 @@ public class UITest extends JFrame{
         
         chessTiles[0][7].setIcon(blackRook);
         chessTiles[7][7].setIcon(whiteRook);
+        
+
     }
     
-    
+    private class DragMouseAdapter extends MouseAdapter {
+        
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+            JComponent c = (JComponent) e.getSource();
+            TransferHandler handler = c.getTransferHandler();
+            handler.exportAsDrag(c, e, TransferHandler.COPY);
+            
+        }
+    }
+
     
     public static void main(String[] args)
     {
@@ -185,4 +206,12 @@ public class UITest extends JFrame{
             ex.setVisible(true);
         });
     }
+    
+    public void emptyTile(int i, int j){
+        ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+        chessTiles[j][i].setIcon(icon);
+    }
+            
+
+    
 }
