@@ -61,10 +61,10 @@ public class UITest extends JFrame{
                 //set a button for each tile
                 JButton b1 = new JButton();
                 add(b1);
-                
-                
+
                 //add transparent img to each tile
                 ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+               
                 
                 JLabel label1 = new JLabel(icon, JLabel.CENTER);
                 b1.add(label1);
@@ -80,11 +80,9 @@ public class UITest extends JFrame{
                 int yLocation = tileLocation.getRow();
                 
                 boolean test = tileLocation.getStatus();
-                
-                
+
                 System.out.println(test);
-                
-                
+
                 //set tile color
                 if(i % 2 == 0 && j % 2 == 0)
                 {
@@ -100,16 +98,29 @@ public class UITest extends JFrame{
                 }
                 chessTiles[i][j] = b1; // add buttons with color to the array
                 
-                b1.addMouseListener(new MouseAdapter() {
+                b1.addMouseListener(new MouseAdapter() 
+                {
                     @Override
-                    public void mousePressed(MouseEvent e) {
+                    public void mousePressed(MouseEvent e) 
+                    {
                         System.out.println("x:" + xLocation + " y: " + yLocation);
                         tileSelected = false;
                         System.out.println(tileSelected);
-                                                 
-                        } 
+                        
+                        
+                        b1.addMouseListener (new MouseAdapter()
+                        {
+                        @Override
+                        public void mouseExited(MouseEvent me) 
+                        {
+                            b1.setIcon(icon); 
+                            ((JComponent) me.getSource()).removeMouseListener(this); //added so pieces dont disappear in the starting rows
+                        }
+                        });                              
+                    }
                 });
                 
+                        
             }
         }
         //pack(); sets size according to the size of its components
@@ -121,14 +132,9 @@ public class UITest extends JFrame{
         setCursor(new Cursor(Cursor.HAND_CURSOR));//set cursor
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close program when window is closed
         setLocationRelativeTo(null); //center GUI on the screen
-
-        
+    
         resetBoard();
-        
-        
-        
-        
-          
+  
     }
     
     private void resetBoard() 
@@ -207,10 +213,6 @@ public class UITest extends JFrame{
         });
     }
     
-    public void emptyTile(int i, int j){
-        ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-        chessTiles[j][i].setIcon(icon);
-    }
             
 
     
