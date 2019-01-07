@@ -9,6 +9,20 @@ package chessboard;
  *
  * @author Ariella
  */
-public class Game {
+public class Game 
+{
+    
+    public Game()
+    {
+        
+    Player whitePlayer = new Player();
+    Player blackPlayer = new Player();
+    ChessBoard gameBoard = new ChessBoard();
+    
+}
+    
+    
+    
+   
     
 }

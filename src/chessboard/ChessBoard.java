@@ -5,9 +5,19 @@
  */
 package chessboard;
 
+import chessboard.Pieces.Bishop;
+import chessboard.Pieces.King;
+import chessboard.Pieces.Knight;
 import chessboard.Pieces.Pawn;
 import chessboard.Pieces.Piece;
+import static chessboard.Pieces.Piece.Type.BISHOP;
+import static chessboard.Pieces.Piece.Type.KING;
+import static chessboard.Pieces.Piece.Type.KNIGHT;
 import static chessboard.Pieces.Piece.Type.PAWN;
+import static chessboard.Pieces.Piece.Type.QUEEN;
+import static chessboard.Pieces.Piece.Type.ROOK;
+import chessboard.Pieces.Queen;
+import chessboard.Pieces.Rook;
 
 /**
  *
@@ -20,14 +30,12 @@ public class ChessBoard {
     
     int count = 0;
     
-    
     final private Piece[][] gamePieces = new Piece[ROWS][COLS];
     final private Location[][] locations = new Location[ROWS][COLS];
     
     public ChessBoard()
     {
-        Player whitePlayer = new Player();
-        Player blackPlayer = new Player();
+      
                 
         for(int i = 0; i < ROWS; i++)
         {
@@ -48,6 +56,30 @@ public class ChessBoard {
                 
             }
         }
+        
+        gamePieces[0][0] = new Rook(chessboard.Pieces.Rook.Color.BLACK, ROOK);
+        gamePieces[7][0] = new Rook(chessboard.Pieces.Rook.Color.WHITE, ROOK);
+        
+        gamePieces[0][1] = new Knight(chessboard.Pieces.Knight.Color.BLACK, KNIGHT);
+        gamePieces[7][1] = new Knight(chessboard.Pieces.Knight.Color.WHITE, KNIGHT);
+        
+        gamePieces[0][2] = new Bishop(chessboard.Pieces.Bishop.Color.BLACK,BISHOP);
+        gamePieces[7][2] = new Bishop(chessboard.Pieces.Bishop.Color.WHITE,BISHOP);
+        
+        gamePieces[0][3] = new Queen(chessboard.Pieces.Queen.Color.BLACK, QUEEN);
+        gamePieces[7][3] = new Queen(chessboard.Pieces.Queen.Color.WHITE, QUEEN);
+
+        gamePieces[0][4] = new King(chessboard.Pieces.King.Color.BLACK, KING);
+        gamePieces[7][4] = new King(chessboard.Pieces.King.Color.WHITE, KING);
+
+        gamePieces[0][5] = new Bishop(chessboard.Pieces.Bishop.Color.BLACK, BISHOP);
+        gamePieces[7][5] = new Bishop(chessboard.Pieces.Bishop.Color.WHITE, BISHOP);
+        
+        gamePieces[0][6] = new Knight(chessboard.Pieces.Knight.Color.BLACK, KNIGHT);
+        gamePieces[7][6] = new Knight(chessboard.Pieces.Knight.Color.WHITE, KNIGHT);
+        
+        gamePieces[0][7] = new Rook(chessboard.Pieces.Rook.Color.BLACK, ROOK);
+        gamePieces[7][7] = new Rook(chessboard.Pieces.Rook.Color.WHITE, ROOK);
         
         for(int i = 0; i < ROWS; i++)
         {
