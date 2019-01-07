@@ -9,8 +9,15 @@ package chessboard.GUI;
 /**
  *
  * @author Ariella
+ * 
+ * 
+ * STATUS: CAN MOVE PIECES NOW BUT PIECES WILL DISAPPEAR IF YOU CLICK AND DO NOT DRAG THEM OUT
+ * other problems: can move tiles / transparent icons onto piece icons
+ * 
  */
 
+
+import chessboard.ChessBoard;
 import chessboard.Location;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -79,9 +86,6 @@ public class UITest extends JFrame{
                 int xLocation = tileLocation.getCol();
                 int yLocation = tileLocation.getRow();
                 
-                boolean test = tileLocation.getStatus();
-
-                System.out.println(test);
 
                 //set tile color
                 if(i % 2 == 0 && j % 2 == 0)
@@ -116,7 +120,16 @@ public class UITest extends JFrame{
                             b1.setIcon(icon); 
                             ((JComponent) me.getSource()).removeMouseListener(this); //added so pieces dont disappear in the starting rows
                         }
-                        });                              
+                        });   
+                        /*
+                        b1.addMouseListener(new MouseAdapter()
+                        {
+                            @Override
+                            public void mouseReleased(MouseEvent mr)
+                            {
+                               System.out.print(mr);
+                            }
+                        }); */
                     }
                 });
                 
@@ -211,6 +224,9 @@ public class UITest extends JFrame{
             UITest ex = new UITest();
             ex.setVisible(true);
         });
+        
+        ChessBoard testBoard = new ChessBoard();
+        
     }
     
             

@@ -5,19 +5,23 @@
  */
 package chessboard.Pieces;
 
+import chessboard.Location;
+
 /**
  *
  * @author Ariella
  */
 public abstract class Piece {
     
-  public enum Color {WHITE, BLACK};
+  //public enum Color {WHITE, BLACK};
   public enum Type {PAWN, ROOK, KNIGHT, BISHOP,QUEEN,KING}
   
-  public Piece(Color color, Type type){
+  public Piece(Type type){
       
   }
   
-  public abstract void movePiece(int xCoord, int yCoord);;
+  public abstract void movePiece(Location source, Location destination);
+  
+  public abstract void checkPath(Location source, Location destination);
   
 }
