@@ -5,10 +5,45 @@
  */
 package chessboard.Pieces;
 
+import chessboard.Location;
+
 /**
  *
  * @author Ariella
  */
-public class Queen {
+public class Queen extends Piece{
     
+    private final Color pieceColor;
+
+   
+    public enum Color {WHITE, BLACK};
+    
+    public Queen(Color color,Type type)
+    {
+        super(type);
+        pieceColor = color;
+    }
+    
+    @Override
+   public void movePiece(Location source, Location destination)
+    {
+        if(pieceColor == Color.WHITE)
+        {
+            System.out.println("Color white queen");
+        }
+        else if(pieceColor == Color.BLACK)
+        {
+            System.out.println("Color black queen");
+        }
+       
+       
+    }
+   
+    @Override
+   public void checkPath(Location source, Location destination)
+   {
+       
+   }
+
 }
+
